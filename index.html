@@ -27,24 +27,27 @@
 	<div id="contacts"></div>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<label>Contact First Name</label>
 				<input type="text" id="newContactFirstName">
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<label>Contact Last Name</label>
 				<input type="text" id="newContactLastName">
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<label>Contact Phone Number</label>
 				<input type="text" id="newContactNumber">
 			</div>
-			<div class="col-sm-6">
-				<label>Contact Email</label>
+			<div class="col-sm-3">
+				<label>Contact Email Address</label>
 				<input type="text" id="newContactEmail">
 			</div>
+		</div>
+		<br />
+		<div class="row">
 			<div class="col-sm-12">
-				<button id="newContact">Create Contact</button>
+				<div class="col-sm-4 col-sm-offset-4"><button id="newContact">Create Contact</button></div>
 			</div>
 		</div>
 	</div>
@@ -52,7 +55,7 @@
 	<script>
 		// CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION //
 
-		function Contact(name, number, email) {
+		function Contact(firstName, lastName, number, email) {
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.number = number;
@@ -73,8 +76,8 @@
 				return model.contacts;
 			}
 
-			this.createContact = function (name) {
-				model.contacts.push(new Contact(firstName, lastName, number, email));
+			this.createContact = function (contactFirstName,contactLastName,contactNumber,contactEmail) {
+				model.contacts.push(new Contact(contactFirstName, contactLastName, contactNumber, contactEmail));
 			}
 		}
 
@@ -100,8 +103,8 @@
 				var contact = controller.getAllContacts()[index];
 				var p = document.createElement("div");
 				p.className = "contact";
-				p.innerHTML = contact.name + " " + contact.number + " " + contact.email;
-				world.appendChild(p);
+				p.innerHTML = contact.firstName + " " + contact.lastName + " " + contact.number + " " + contact.email;
+				contacts.appendChild(p);
 			}
 
 
@@ -120,8 +123,8 @@
 			//Search Contacts*****************************************************************************
 			//Iterates through contacts and matches search input value if match found, otherwise renders "No Match Found"
 			
-			this.searchContacts = function (contactFirstname,contactLastName,contactNumber,contactEmail) {   // Looks at individual search functions, renders results
-				
+			this.searchContacts = function (contactFirstname,contactLastName,contactNumber,contactEmail) {   // Pulls in search functions
+				var searchValue = document.getElementById("Search").value;
 			}
 			
 			this.searchContactFirstName = function(contactFirstName) {
