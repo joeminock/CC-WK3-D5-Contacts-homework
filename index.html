@@ -84,7 +84,8 @@
 
 		function View(controller) {
 
-			//show all Contacts. Loops through controller getAllContacts action //
+			//Show all Contacts**************************************************************************
+			//Loops through controller getAllContacts action
 			this.showAllContacts = function () {
 				var contactsHTML = document.getElementById("contacts");
 				contactsHTML.innerHTML = "";
@@ -93,7 +94,7 @@
 				}
 			}
 
-			//show an instance of a Contact.
+			//Instance of an individual Contact**********************************************************
 			this.showContact = function (index) {
 				var contacts = document.getElementById("contacts");
 				var contact = controller.getAllContacts()[index];
@@ -104,7 +105,8 @@
 			}
 
 
-			//Create a Contact (gets new Contact name, number, and email from newContactXxxx fields) //
+			//Create a Contact**************************************************************************** 
+			//(gets new Contact name, number, and email from newContactXxxx fields)
 			this.createContact = function () {
 				var contactFirstName = document.getElementById("newContactFirstName").value;
 				var contactLastName = document.getElementById("newContactLastName").value;
@@ -113,6 +115,29 @@
 				controller.createContact(contactFirstName, contactLastName, contactNumber, contactEmail); //invokes createContact controller and passes the value of petName // 
 				this.showAllContacts();
 			}
+			
+			
+			//Search Contacts*****************************************************************************
+			//Iterates through contacts and matches search input value if match found, otherwise renders "No Match Found"
+			
+			this.searchContacts = function (contactFirstname,contactLastName,contactNumber,contactEmail) {   // Looks at individual search functions, renders results
+				
+			}
+			
+			this.searchContactFirstName = function(contactFirstName) {
+				
+			}
+			this.searchContactLastName = function(contactLastName) {
+				
+			}
+			this.searchContactNumber = function(contactNumber) {
+				
+			}
+			this.searchContactEmail = function(contactEmail) {
+				
+			}
+			
+			
 		}
 
 		var m = new Model();
