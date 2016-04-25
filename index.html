@@ -8,34 +8,34 @@
 
 <body>
 	<div id="contacts"></div>
-
-	<div>
-		<input type="text" id="newContactFirstName">
-		<input type="text" id="newContactLastName">
-		<input type="text" id="newContactNumber">
-		<input type="text" id="newContactEmail">
-		<button id="newContact">Create Contact</button>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6"><input type="text" id="newContactFirstName"></div>
+			<div class="col-sm-6"><input type="text" id="newContactLastName"></div>
+			<div class="col-sm-6"><input type="text" id="newContactNumber"></div>
+			<div class="col-sm-6"><input type="text" id="newContactEmail"></div>
+			<div class="col-sm-12"><button id="newContact">Create Contact</button></div>
+		</div>
 	</div>
 
 	<script>
-		
-// CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION //
-		
-		function Contact(name,number,email) {
+		// CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION //
+
+		function Contact(name, number, email) {
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.number = number;
 			this.email = email;
 
 		}
-		
-// MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL //
+
+		// MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL //
 		function Model() {
 			this.contacts = [];
 		}
 
-// CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER //
-		
+		// CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER //
+
 		function Controller(model) {
 
 			this.getAllContacts = function () {
@@ -43,20 +43,20 @@
 			}
 
 			this.createContact = function (name) {
-				model.contacts.push(new Contact(name,number,email));
+				model.contacts.push(new Contact(firstName, lastName, number, email));
 			}
 		}
-		
-// VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW //
-		
+
+		// VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW //
+
 		// User interface
-		
+
 		function View(controller) {
-			
+
 			//show all Contacts. Loops through controller getAllContacts action //
 			this.showAllContacts = function () {
-				var world = document.getElementById("contacts");
-				world.innerHTML = "";
+				var contactsHTML = document.getElementById("contacts");
+				contactsHTML.innerHTML = "";
 				for (var i = 0; i < controller.getAllContacts().length; i++) {
 					this.showContact(i);
 				}
@@ -64,21 +64,22 @@
 
 			//show an instance of a Contact.
 			this.showContact = function (index) {
-				var world = document.getElementById("contacts");
-				var pet = controller.getAllContacts()[index];
+				var contacts = document.getElementById("contacts");
+				var contact = controller.getAllContacts()[index];
 				var p = document.createElement("div");
 				p.className = "contact";
 				p.innerHTML = contact.name + " " + contact.number + " " + contact.email;
 				world.appendChild(p);
 			}
-			
-			
+
+
 			//Create a Contact (gets new Contact name, number, and email from newContactXxxx fields) //
-			this.createContact = function() {
-				var contactName = document.getElementById("newContactName").value;
+			this.createContact = function () {
+				var contactFirstName = document.getElementById("newContactFirstName").value;
+				var contactLastName = document.getElementById("newContactLastName").value;
 				var contactNumber = document.getElementById("newContactNumber").value;
 				var contactEmail = document.getElementById("newContactEmail").value;
-				controller.createContact(contactName,contactNumber,contactEmail);                              //invokes createContact controller and passes the value of petName // 
+				controller.createContact(contactFirstName, contactLastName, contactNumber, contactEmail); //invokes createContact controller and passes the value of petName // 
 				this.showAllContacts();
 			}
 		}
@@ -92,8 +93,6 @@
 		}
 
 		v.showAllContacts();
-
-		
 	</script>
 </body>
 
