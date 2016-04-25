@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Joe's Address Book</title>
+</head>
+
+<body>
+	<div id="contacts"></div>
+
+	<div>
+		<input type="text" id="newContactName">
+		<input type="text" id="newContactNumber">
+		<input type="text" id="newContactEmail">
+		<button id="newContact">Create Contact</button>
+	</div>
+
+	<script>
+		
+// CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION - CONSTRUCTOR FUNCTION //
+		
+		function Contact(name,number,email) {
+			this.name = name;
+			this.number = number;
+			this.email = email;
+
+		}
+		
+// MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL - MODEL //
+		function Model() {
+			this.contacts = [];
+		}
+
+// CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER - CONTROLLER //
+		
+		function Controller(model) {
+
+			this.getAllContacts = function () {
+				return model.contacts;
+			}
+
+			this.createContact = function (name) {
+				model.contacts.push(new Contact(name,number,email));
+			}
+		}
+		
+// VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW - VIEW //
+		
+		// User interface
+		
+		function View(controller) {
+			
+			//show all Contacts. Loops through controller getAllContacts action //
+			this.showAllContacts = function () {
+				var world = document.getElementById("contacts");
+				world.innerHTML = "";
+				for (var i = 0; i < controller.getAllContacts().length; i++) {
+					this.showContact(i);
+				}
+			}
+
+			//show an instance of a Contact.
+			this.showContact = function (index) {
+				var world = document.getElementById("contacts");
+				var pet = controller.getAllContacts()[index];
+				var p = document.createElement("div");
+				p.className = "contact";
+				p.innerHTML = contact.name + " " + contact.number + " " + contact.email;
+				world.appendChild(p);
+			}
+			
+			
+			//Create a Contact (gets new Contact name, number, and email from newContactXxxx fields) //
+			this.createContact = function() {
+				var contactName = document.getElementById("newContactName").value;
+				var contactNumber = document.getElementById("newContactNumber").value;
+				var contactEmail = document.getElementById("newContactEmail").value;
+				controller.createContact(contactName,contactNumber,contactEmail);                              //invokes createContact controller and passes the value of petName // 
+				this.showAllContacts();
+			}
+		}
+
+		var m = new Model();
+		var c = new Controller(m);
+		var v = new View(c);
+
+		document.getElementById("newContact").onclick = function () {
+			v.createContact();
+		}
+
+		v.showAllContacts();
+
+		
+	</script>
+</body>
+
+</html>
